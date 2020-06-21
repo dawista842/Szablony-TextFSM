@@ -1,0 +1,27 @@
+Value Required DEVICE_MODEL (\S+)
+Value Required COMPILATION_DATE (\S+\s\d+\s(\d+\:\d+\:\d+)\s\d+)
+Value Required SYS_LOCATION (\w+)
+Value Required CPU_MAC_ADDRESS ([a-fA-F0-9]{2}\:[a-fA-F0-9]{2}\:[a-fA-F0-9]{2}\:[a-fA-F0-9]{2}\:[a-fA-F0-9]{2}\:[a-fA-F0-9]{2})
+Value Required VLAN_MAC_ADDRESS ([a-fA-F0-9]{2}\:[a-fA-F0-9]{2}\:[a-fA-F0-9]{2}\:[a-fA-F0-9]{2}\:[a-fA-F0-9]{2}\:[a-fA-F0-9]{2})
+Value Required SOFTWARE_VERSION (\S+)
+Value Required BOOTROM_VERSION (\S+)
+Value Required HARDWARE_VERSION (\S+)
+Value Required CPLD_VERSION (\S+)
+Value Required SERIAL_NUMBER (\w+)
+Value Required UPTIME ((\d+\s\S+),\s+(\d+\s\S+),\s+(\d+\s\S+),\s+(\d+\s\S+))
+
+Start
+  ^\s+${DEVICE_MODEL}\s+Device,\s+Compiled\s+on\s+${COMPILATION_DATE}*$$
+  ^\s+sysLocation\s+${SYS_LOCATION}*$$
+  ^\s+CPU\s+Mac\s+${CPU_MAC_ADDRESS}*$$
+  ^\s+Vlan\s+MAC\s+${VLAN_MAC_ADDRESS}*$$
+  ^\s+SoftWare\s+Version\s+${SOFTWARE_VERSION}*$$
+  ^\s+BootRom\s+Version\s+${BOOTROM_VERSION}*$$
+  ^\s+HardWare\s+Version\s+${HARDWARE_VERSION}*$$
+  ^\s+CPLD\s+Version\s+${CPLD_VERSION}*$$
+  ^\s+Serial\s+No.:${SERIAL_NUMBER}*$$
+  ^\s+Copyright\s+\(C\)\s+(\d+)-(\d+)\s+by\s+Digital\s+China\s+Networks\s+Limited.*$$
+  ^\s+All\s+rights\s+reserved*$$
+  ^\s+Last\s+reboot\s+is\s+cold\s+reset.*$$
+  ^\s+Uptime\s+is\s+${UPTIME}*$$
+  ^. -> Error

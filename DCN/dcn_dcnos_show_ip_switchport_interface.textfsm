@@ -1,0 +1,12 @@
+Value Required INTERFACE_NAME (\S+)
+Value Required INTERFACE_TYPE (\S+)
+Value Required INTERFACE_MODE (\S+)
+Value Required PORT_VID (\d+)
+
+Start
+  ^(\S+)*$$ -> Continue.Record
+  ^${INTERFACE_NAME}*$$
+  ^Type\s+:${INTERFACE_TYPE}*$$
+  ^Mode\s+:${INTERFACE_MODE}*$$
+  ^Port\s+VID\s+:${PORT_VID}*$$
+  ^. -> Error

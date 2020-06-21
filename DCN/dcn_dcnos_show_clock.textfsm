@@ -1,0 +1,6 @@
+Value Required DATE (\S+\s+\S+\s+\d+\s+(\d+\:\d+\:\d+)\s+\d+)
+Value Required TIMEZONE (.+?)
+
+Start
+  ^Current\s+time\s+is\s+${DATE}\s+\[${TIMEZONE}\]*$$
+  ^. -> Error

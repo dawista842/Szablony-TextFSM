@@ -1,0 +1,12 @@
+Value Required LINE (\S+\s\d+)
+Value Required USER (\w+)
+Value Required IP_ADDRESS (\d+\.\d+\.\d+\.\d+)
+Value Required TIME (\S+\s\d+\s(\d+\:\d+\:\d+)\s\d+)
+
+Start
+  ^\s+vty\s+0-15:\s+telnet\s+users*$$
+  ^\s+vty\s+16-31:\s+ssh\s+users*$$
+  ^\s+-------------------------------------------------------------------------------------------*$$
+  ^\s+Line\s+User\s+Location\s+Time*$$
+  ^\s+${LINE}\s+${USER}\s+${IP_ADDRESS}\s+${TIME}*$$ -> Record
+  ^. -> Error

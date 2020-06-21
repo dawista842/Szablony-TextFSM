@@ -1,0 +1,9 @@
+Value Required INDEX (\d+)
+Value Required INTERFACE (\S+)
+Value Required IP_ADDRESS (\d+\.\d+\.\d+\.\d+)
+Value Required PROTOCOL (\w+)
+
+Start
+  ^Index\s+Interface\s+IP-Address\s+Protocol*$$
+  ^${INDEX}\s+${INTERFACE}\s+${IP_ADDRESS}\s+${PROTOCOL}*$$ -> Record
+  ^. -> Error

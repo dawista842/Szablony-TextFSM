@@ -1,0 +1,12 @@
+Value Required VLAN (\d+)
+Value Required MAC_ADDRESS ([a-fA-F0-9]{2}\-[a-fA-F0-9]{2}\-[a-fA-F0-9]{2}\-[a-fA-F0-9]{2}\-[a-fA-F0-9]{2}\-[a-fA-F0-9]{2})
+Value Required TYPE (\w+)
+Value Required CREATOR (\w+)
+Value Required PORT (\S+)
+
+Start
+  ^Read\s+mac\s+address\s+table....*$$
+  ^Vlan\s+Mac\s+Address\s+Type\s+Creator\s+Ports*$$
+  ^----\s+---------------------------\s+-------\s+-------------------------------------*$$
+  ^${VLAN}\s+${MAC_ADDRESS}\s+${TYPE}\s+${CREATOR}\s+${PORT}*$$ -> Record
+  ^. -> Error
