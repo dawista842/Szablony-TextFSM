@@ -1,0 +1,13 @@
+Value Required INTERFACE (\d+\/\d+\/\d+)
+Value Required LINK_PROTOCOL_STATUS (\S+\/\S+)
+Value Required SPEED (\S+)
+Value Required DUPLEX (\S+)
+Value Required VLAN (\w+)
+Value Required TYPE (\S+)
+Value DESCRIPTION (.+)
+
+Start
+  ^Codes:\s+A-Down\s+-\s+administratively\s+down,\s+E-Down\s+-\s+errdisable\s+down,\s+a\s+-\s+auto,\s+f\s+-\s+force,\s+G\s+-\s+Gigabit*$$
+  ^Interface\s+Link\/Protocol\s+Speed\s+Duplex\s+Vlan\s+Type\s+Alias\s+Name*$$
+  ^${INTERFACE}\s+${LINK_PROTOCOL_STATUS}\s+${SPEED}\s+${DUPLEX}\s+${VLAN}\s+${TYPE}*\s+${DESCRIPTION}*$$ -> Record
+  ^. -> Error
