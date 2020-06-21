@@ -1,0 +1,6 @@
+Flags: D - download to forwarding table
+-------------------------------------------------------------------------------------
+Destination/Mask   Proto     Pre Cost  Flags Nexthop         Interface RpmIndex Codes
+172.22.38.53/32    connected 0   0     D     0.0.0.0         0         0        0
+172.22.38.48/28    connected 0   0     D     172.22.38.53              0        0
+0.0.0.0/0          static    1   1     D     172.22.38.49    ip0
