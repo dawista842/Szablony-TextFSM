@@ -1,0 +1,20 @@
+Value Required DESTINATION_PREFIX (\d+\.\d+\.\d+\.\d+\/\d+)
+Value Required PROTO (\w+)
+Value Required PRE (\d+)
+Value Required COST (\d+)
+Value Required FLAGS (\S+)
+Value Required NEXT_HOP (\d+\.\d+\.\d+\.\d+)
+Value INTERFACE (\S+)
+Value RPM_INDEX (\d+)
+Value CODES (\d+)
+
+Start
+  ^Flags:\s+D\s+-\s+download\s+to\s+forwarding\s+table
+  ^-------------------------------------------------------------------------------------*$$
+  ^Destination\/Mask\s+Proto\s+Pre\s+Cost\s+Flags\s+Nexthop\s+Interface\s+RpmIndex\s+Codes*$$
+  ^(\d+\.\d+\.\d+\.\d+\/\d+)\s+(\w+)\s+(\d+)\s+(\d+)\s+(\S+)\s+(\d+\.\d+\.\d+\.\d+)* -> Continue.Record
+  ^${DESTINATION_PREFIX}\s+${PROTO}\s+${PRE}\s+${COST}\s+${FLAGS}\s+${NEXT_HOP}\s+${INTERFACE}* -> Continue
+  ^(\d+\.\d+\.\d+\.\d+\/\d+)\s+(\w+)\s+(\d+)\s+(\d+)\s+(\S+)\s+(\d+\.\d+\.\d+\.\d+)\s+${RPM_INDEX}* -> Continue
+  ^(\d+\.\d+\.\d+\.\d+\/\d+)\s+(\w+)\s+(\d+)\s+(\d+)\s+(\S+)\s+(\d+\.\d+\.\d+\.\d+)\s+(\d+)\s+${CODES}*
+  ^(\d+\.\d+\.\d+\.\d+\/\d+)\s+(\w+)\s+(\d+)\s+(\d+)\s+(\S+)\s+(\d+\.\d+\.\d+\.\d+)*
+  ^. -> Error

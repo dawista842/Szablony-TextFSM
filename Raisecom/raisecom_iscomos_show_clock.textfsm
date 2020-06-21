@@ -1,0 +1,11 @@
+Value DISPLAY_MODE (\S+)
+Value CURRENT_SYSTEM_DATE (\d+\-\d+\-\d+)
+Value CURRENT_SYSTEM_TIME (\d+\:\d+\:\d+\.\d+)
+Value TIMEZONE_OFFSET (\S+)
+
+Start
+  ^Clock\s+display\s+mode:\s+${DISPLAY_MODE}*$$
+  ^Current\s+system\s+time:\s+${CURRENT_SYSTEM_DATE},${CURRENT_SYSTEM_TIME}*$$
+  ^Timezone\s+offset:\s+${TIMEZONE_OFFSET}*$$
+  ^. -> Error
+  

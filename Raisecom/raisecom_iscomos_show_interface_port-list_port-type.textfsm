@@ -1,0 +1,9 @@
+Value Required PORT (\S\d+)
+Value Required ADMIN_STATUS (\S+)
+Value Required OPER_STATUS (\S+\d+)
+
+Start
+  ^Port\s+PortType-AdminStatus\s+PortType-OperStatus*$$
+  ^----------------------------------------------------------*$$
+  ^${PORT}\s+${ADMIN_STATUS}\s+${OPER_STATUS}*$$ -> Record
+  ^. -> Error

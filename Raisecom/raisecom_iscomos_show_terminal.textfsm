@@ -1,0 +1,12 @@
+Value CURRENT_USER (\S|\s)
+Value Required TERMINAL (\S+)
+Value Required STATE (\w+)
+Value Required TIMEOUT (\S+)
+Value Required USER (\S+|\S+\s\S+)
+Value Required IP (\S+)
+
+Start
+  ^\s+Terminal\s+State\s+Time-out\s+User\s+IP*$$
+  ^--------------------------------------------------------------------------*$$
+  ^${CURRENT_USER}${TERMINAL}\s+${STATE}\s+${TIMEOUT}\s+${USER}\s+${IP}*$$ -> Record
+  ^. -> Error
