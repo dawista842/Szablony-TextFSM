@@ -1,0 +1,16 @@
+Value Filldown TOTAL (\S+)
+Value Fillup DRIVE_TYPE (\S+)
+Value Fillup DRIVE_SIZE (\S+)
+Value Fillup DRIVE_USED (\S+)
+Value Fillup DRIVE_USED_PERCENTAGE (\S+)
+Value Fillup DRIVE_AVAILABLE (\S+)
+Value Required PERMISSIONS (\S+)
+Value Required FILE_SIZE ([\w\.]+)
+Value Required FILE_NAME (\S+)
+
+Start
+  ^total\s+${TOTAL}*$$
+  ^${PERMISSIONS}\s+${FILE_SIZE}\s+${FILE_NAME}*$$ -> Record
+  ^Drive\s+:\s+${DRIVE_TYPE}*$$
+  ^Size:${DRIVE_SIZE}\s+Used:${DRIVE_USED}\s+Available:${DRIVE_AVAILABLE}\s+Use:${DRIVE_USED_PERCENTAGE}*$$
+  ^. -> Error
