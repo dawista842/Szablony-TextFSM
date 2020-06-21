@@ -1,3 +1,0 @@
-Clock display mode:  default
-Current system time:  2020-06-21,13:46:16.305
-Timezone offset: +01:00-CET
