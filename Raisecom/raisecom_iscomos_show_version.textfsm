@@ -1,0 +1,25 @@
+Value PRODUCT_NAME (\S+)
+Value HARDWARE_VERSION ([A-Z]+\.\d+)
+Value SOFTWARE_VERSION (\S+)
+Value PCB_VERSION ([A-Z]+\.\d+)
+Value CPLD_VERSION (\d+\.\d+)
+Value REAP_VERSION (\d+\.\d+)
+Value BOOTSTRAP_VERSION (\d+\.\d+\.\d+)
+Value COMPILATION_DATE (.+)
+Value MAC_ADDRESS ([a-fA-F0-9]{4}\.[a-fA-F0-9]{4}\.[a-fA-F0-9]{4})
+Value SERIAL_NUMBER (\S+)
+Value SYSTEM_UPTIME (.+)
+
+Start
+  ^Product\s+Name:\s+${PRODUCT_NAME}*$$
+  ^Hardware\s+Version:\s+${HARDWARE_VERSION}*$$
+  ^Software\s+Version:\s+${SOFTWARE_VERSION}*$$
+  ^PCB\s+Version:\s+${PCB_VERSION}*$$
+  ^CPLD\s+Version:\s+${CPLD_VERSION}*$$
+  ^REAP\s+Version:\s+${REAP_VERSION}*$$
+  ^Bootstrap\s+Version:\s+${BOOTSTRAP_VERSION}*$$
+  ^Compiled\s+${COMPILATION_DATE}*$$
+  ^System\s+MacAddress:\s+${MAC_ADDRESS}*$$
+  ^Serial\s+number:\s+${SERIAL_NUMBER}*$$
+  ^System\s+uptime is\s+${SYSTEM_UPTIME}*$$
+  ^. -> Error

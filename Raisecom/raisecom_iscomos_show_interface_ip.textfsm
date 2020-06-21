@@ -1,0 +1,11 @@
+Value Required IF (\d+)
+Value Required IP_ADDRESS (\d+\.\d+\.\d+\.\d+)
+Value Required NETWORK_MASK (\d+\.\d+\.\d+\.\d+)
+Value Required SOURCE (\w+)
+Value Required CATEGORY (\w+)
+
+Start
+  ^IF\s+Address\s+NetMask\s+Source\s+Catagory*$$
+  ^----------------------------------------------------------*$$
+  ^${IF}\s+${IP_ADDRESS}\s+${NETWORK_MASK}\s+${SOURCE}\s+${CATEGORY}*$$ -> Record
+  ^. -> Error

@@ -1,0 +1,14 @@
+Value Required PORT (\S\d+)
+Value Required ADMIN (\w+)
+Value Required OPERATE (\S+)
+Value Required SPEED (\S+)
+Value Required DUPLEX (\w+)
+Value Required MAU_TYPE (\S+)
+Value Required STATE (\w+)
+Value Required DESCRIPTION (.+)
+
+Start
+  ^Port\s+Admin\s+Operate\s+Speed\s+Duplex\s+Active\s+MAU\s+type\s+State\s+Description*$$
+  ^------------------------------------------------------------------------------------------------*$$
+  ^${PORT}\s+${ADMIN}\s+${OPERATE}\s+${SPEED}\s+${DUPLEX}\s+${MAU_TYPE}\s+${STATE}\s+${DESCRIPTION}*$$ -> Record
+  ^. -> Error

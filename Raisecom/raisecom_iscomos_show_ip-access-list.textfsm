@@ -1,0 +1,14 @@
+Value Required LIST_NUMBER (\d+)
+Value Required ACCESS (\w+)
+Value Required PROTOCOL (\w+)
+Value Required REF (\d+)
+Value Required SOURCE (\S+)
+Value Required DESTINATION (\S+)
+
+Start
+  ^Src\s+Ip:\s+Source\s+Ip\s+Address*$$
+  ^Dest\s+Ip:\s+Destination\s+Ip\s+Address*$$
+  ^List\s+Access\s+Protocol\s+Ref.\s+Src\s+Ip:Port\s+Dest\s+Ip:\s+Port*$$
+  ^---------------------------------------------------------------*$$
+  ^${LIST_NUMBER}\s+${ACCESS}\s+${PROTOCOL}\s+${REF}\s+${SOURCE}\s+${DESTINATION}*$$ -> Record
+  ^. -> Error

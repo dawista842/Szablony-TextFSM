@@ -1,0 +1,10 @@
+Value Required SIZE (\d+)
+Value Required DATE (\S+\-\d+\-\d+)
+Value Required TIME (\d+\:\d+\:\d+)
+Value Required NAME (.+)
+
+Start
+  ^Size\s+Date\s+Time\s+Name*$$
+  ^--------------------------------------------*$$
+  ^${SIZE}\s+${DATE}\s+${TIME}\s+${NAME}*$$ -> Record
+  ^. -> Error

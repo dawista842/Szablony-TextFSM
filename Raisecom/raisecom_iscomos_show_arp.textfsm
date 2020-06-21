@@ -1,0 +1,29 @@
+Value Filldown AGING_TIME (\d+)
+Value Filldown TOTAL_DETECT_TIMES (\d+)
+Value Filldown TOTAL_ENTRIES (\d+)
+Value Filldown DYNAMIC_ENTRIES (\d+)
+Value Filldown STATIC_ENTRIES (\d+)
+Value Required IP_ADDRESS (\d+\.\d+\.\d+\.\d+)
+Value Required MAC_ADDRESS ([a-fA-F0-9]{4}\.[a-fA-F0-9]{4}\.[a-fA-F0-9]{4})
+Value Required IP_IF (\d+)
+Value Required PORT (\S\d+)
+Value Required VLAN (\d+)
+Value Required FLAGS (\S+)
+Value Required AGE (\d+)
+Value Required DETECT_TIMES (\d+)
+
+Start
+  ^Aging\s+time\(m\):\s+${AGING_TIME}*$$
+  ^Detect\s+times:\s+${TOTAL_DETECT_TIMES}*$$
+  ^Total\s+:\s+${TOTAL_ENTRIES}\s+Dynamic\s+:\s+${DYNAMIC_ENTRIES}\s+Static\s+:\s+${STATIC_ENTRIES}*$$
+  ^Flags:*$$
+  ^S:\s+Static\s+arp*$$
+  ^R:\s+Arp\s+referenced\s+by\s+a\s+static\s+route*$$
+  ^F:\s+Arp\s+is\s+refreshing*$$
+  ^IP\s+Address\s+Mac\s+Address\s+IpIf\s+Port\s+Vlan\s+Flags\s+Age\(s\)\s+DetectTimes*$$ -> Clear
+  ^------------------------------------------------------------------------------*$$ -> RecordArpEntries
+  ^. -> Error
+  
+RecordArpEntries
+  ^${IP_ADDRESS}\s+${MAC_ADDRESS}\s+${IP_IF}\s+${PORT}\s+${VLAN}\s+${FLAGS}\s+${AGE}\s+${DETECT_TIMES} -> Record
+  ^. -> Error

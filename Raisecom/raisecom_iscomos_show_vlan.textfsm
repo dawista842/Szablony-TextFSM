@@ -1,0 +1,49 @@
+Value Filldown SWITCH_MODE (\S+)
+Value Required VLAN (\d+)
+Value Required STATE (\w+)
+Value Required STATUS (\w+)
+Value Required PRIORITY (\S+)
+Value List MEMBER_PORTS ([\d-]+)
+Value Required VLAN_NAME (\S+)
+
+Start
+  ^Switch\s+Mode:\s+${SWITCH_MODE}*$$
+  ^\s+State\s+Status\s+Priority\s+Member-Ports\s+VLAN\s+Name*$$
+  ^------------------------------------------------------------------------------*$$ -> RecordVLANEntries
+  ^. -> Error
+  
+RecordVLANEntries
+  ^${VLAN}\s+ -> Continue.Record
+  ^${VLAN}\s+${STATE}\s+${STATUS}\s+${PRIORITY}\s+(\S)\s+${MEMBER_PORTS},(\S+)\s+${VLAN_NAME}* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){1}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){2}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){3}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){4}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){5}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){6}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){7}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){8}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){9}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){10}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){11}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){12}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){13}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){14}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){15}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){16}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){17}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){18}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){19}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){20}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){21}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){22}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){23}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){24}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){25}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){26}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){27}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){28}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){29}${MEMBER_PORTS},* -> Continue
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+((?:[\d\-]+),){30}${MEMBER_PORTS},*
+  ^(\d+)\s+(\w+)\s+(\w+)\s+(\S+)\s+(\S)\s+(\S+)\s+(\S+)*
+  ^. -> Error

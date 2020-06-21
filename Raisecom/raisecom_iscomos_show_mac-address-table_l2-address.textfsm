@@ -1,0 +1,13 @@
+Value Filldown AGING_TIME (\d+)
+Value Filldown AGING_TIME_UNIT (\w+)
+Value Required MAC_ADDRESS ([a-fA-F0-9]{4}\.[a-fA-F0-9]{4}\.[a-fA-F0-9]{4})
+Value Required PORT (\S\d+)
+Value Required VLAN (\d+)
+Value Required FLAGS (\S+)
+
+Start
+  ^Aging\s+time:\s+${AGING_TIME}\s+${AGING_TIME_UNIT}*$$
+  ^Mac\s+Address\s+Port\s+Vlan\s+Flags*$$
+  ^-------------------------------------------------------*$$
+  ^${MAC_ADDRESS}\s+${PORT}\s+${VLAN}\s+${FLAGS}*$$ -> Record
+  ^. -> Error
