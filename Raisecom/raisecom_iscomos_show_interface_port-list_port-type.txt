@@ -1,0 +1,15 @@
+Port         PortType-AdminStatus   PortType-OperStatus
+----------------------------------------------------------
+P1           autodetect             fiber1000
+P2           autodetect             fiber1000
+P3           autodetect             fiber1000
+P4           autodetect             fiber1000
+P5           autodetect             fiber1000
+P6           autodetect             fiber1000
+P7           autodetect             fiber1000
+P8           autodetect             fiber1000
+P9           autodetect             fiber1000
+P10          autodetect             fiber1000
+P11          autodetect             fiber1000
+P12          autodetect             fiber1000
+P13          autodetect             fiber1000
