@@ -1,0 +1,63 @@
+Value Required INTERFACE (\w+)
+Value Required IN_OCTETS (\d+)
+Value Required IN_UCAST_PKTS (\d+)
+Value Required IN_MULTICAST_PKTS (\d+)
+Value Required IN_BROADCAST_PKTS (\d+)
+Value Required IN_DROP_EVENTS (\d+)
+Value Required IN_CRC_ALIGN_ERRORS (\d+)
+Value Required IN_UNDERSIZE_PKTS (\d+)
+Value Required IN_OVERSIZE_PKTS (\d+)
+Value Required IN_FRAGMENTS (\d+)
+Value Required IN_JABBERS (\d+)
+Value Required IN_COLLISIONS (\d+)
+Value Required OUT_OCTETS (\d+)
+Value Required OUT_UCAST_PKTS (\d+)
+Value Required OUT_MULTICAST_PKTS (\d+)
+Value Required OUT_BROADCAST_PKTS (\d+)
+Value Required OUT_ERROR (\d+)
+Value Required OUT_DISCARD (\d+)
+Value Required OUT_ABORT (\d+)
+Value Required OUT_DIFFERRED (\d+)
+Value Required OUT_LATE_COLLISIONS (\d+)
+Value Required OUT_NO_CARRIER (\d+)
+Value Required OUT_LOST_CARRIER (\d+)
+Value Required OUT_MAC_TRANSMIT_ERROR (\d+)
+Value Required INGRESS_BITS (\d+)
+Value Required EGRESS_BITS (\d+)
+
+Start
+  ^Interface:\s+(\w+)*$$ -> Continue.Record
+  ^Interface:\s+${INTERFACE}*$$
+  ^------------------------------------------------*$$
+  ^Input\s+Normal\s+Statistics:*$$
+  ^\s+InOctets:\s+${IN_OCTETS}*$$
+  ^\s+InUcastPkts:\s+${IN_UCAST_PKTS}*$$
+  ^\s+InMulticastPkts:\s+${IN_MULTICAST_PKTS}*$$
+  ^\s+InBroadcastPkts:\s+${IN_BROADCAST_PKTS}*$$
+  ^\s+InOctets:\s+${IN_OCTETS}*$$
+  ^Input\s+Error\s+Statistics:*$$
+  ^\s+DropEvents\(Pkts\):\s+${IN_DROP_EVENTS}*$$
+  ^\s+CRCAlignErrors\(Pkts\):\s+${IN_CRC_ALIGN_ERRORS}*$$
+  ^\s+UndersizePkts:\s+${IN_UNDERSIZE_PKTS}*$$
+  ^\s+OversizePkts:\s+${IN_OVERSIZE_PKTS}*$$
+  ^\s+Fragments\(Pkts\):\s+${IN_FRAGMENTS}*$$
+  ^\s+Jabbers\(Pkts\):\s+${IN_JABBERS}*$$
+  ^\s+Collisions\(Pkts\):\s+${IN_COLLISIONS}*$$
+  ^Output\s+Normal\s+Statistics:*$$
+  ^\s+OutOctets:\s+${OUT_OCTETS}*$$
+  ^\s+OutUcastPkts:\s+${OUT_UCAST_PKTS}*$$
+  ^\s+OutMulticastPkts:\s+${OUT_MULTICAST_PKTS}*$$
+  ^\s+OutBroadcastPkts:\s+${OUT_BROADCAST_PKTS}*$$
+  ^Output\s+Error\s+Statistics:*$$
+  ^\s+OutputError\(Pkts\):\s+${OUT_ERROR}*$$
+  ^\s+OutputDiscard\(Pkts\):\s+${OUT_DISCARD}*$$
+  ^\s+Abort\(Pkts\):\s+${OUT_ABORT}*$$
+  ^\s+Differred\(Pkts\):\s+${OUT_DIFFERRED}*$$
+  ^\s+LateCollisions\(Pkts\):\s+${OUT_LATE_COLLISIONS}*$$
+  ^\s+NoCarrier\(Pkts\):\s+${OUT_NO_CARRIER}*$$
+  ^\s+LostCarrier\(Pkts\):\s+${OUT_LOST_CARRIER}*$$
+  ^\s+MacTransmitError\(Pkts\):\s+${OUT_MAC_TRANSMIT_ERROR}*$$
+  ^Bit\s+Statistics:*$$
+  ^\s+Ingress\s+Bits:\s+${INGRESS_BITS}*$$
+  ^\s+Egress\s+Bits:\s+${EGRESS_BITS}*$$
+  ^. -> Error
