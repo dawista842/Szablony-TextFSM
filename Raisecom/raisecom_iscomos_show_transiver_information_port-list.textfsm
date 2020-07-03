@@ -1,0 +1,71 @@
+Value Required INTERFACE (\w+)
+Value Required TRANSIVER_TYPE (\S+)
+Value Required VENDOR_NAME (\S+)
+Value Required VENDOR_PART_NUMBER (\S+)
+Value Required VENDOR_SERIAL_NUMBER (\S+)
+Value Required VENDOR_VERSION (\S+)
+Value Required DIGITAL_DIAGNOSTIC_FUNC (.+)
+Value Required CALIBRATION_TYPE (\S+)
+Value Required RSSI (.+)
+Value Required MEDIA_TYPE (\S+)
+Value Required TRANSFER_DISTANCE (\d+)
+Value Required CONNECTOR_TYPE (\S+)
+Value Required WAVELENGTH (\S+)
+Value Required MIN_DATA_RATE (\S+)
+Value Required MAX_DATA_RATE (\S+)
+Value Required WAVELENGTH_TOLERANCE (\S+)
+Value Required COMPATIBILITY_TYPE (\S+)
+Value Required MAX_POWER_DISSIPATION (\S+)
+Value Required CDR (.+)
+Value Required TX_REF_CLOCK (.+)
+Value Required WAVELENGTH_CONTROL (.+)
+Value Required COOLED_LASER (\w+)
+Value Required TUNABLE_LASER (\w+)
+Value Required DETECTOR_TYPE (\S+)
+Value Required LINE_LOOPBACK (.+)
+Value Required XFI_LOOPBACK (.+)
+Value Required VPS (.+)
+Value Required TX_DIS_CONTROL (.+)
+Value Required STANDBY_CONTROL (.+)
+Value Required VPS_INNER_LOW_POWER (.+)
+Value Required VPS_OUTER_LOW_POWER (.+)
+Value Required FEC (.+)
+Value Required CMU (.+)
+
+Start
+  ^Port\s+(\w+)\s+basic\s+information:*$$ -> Continue.Record
+  ^Port\s+${INTERFACE}\s+basic\s+information:*$$
+  ^--------------------------------------------*$$
+  ^Transceiver\s+Type\s+:\s+${TRANSIVER_TYPE}*$$
+  ^Vendor\s+Name\s+:\s+${VENDOR_NAME}*$$
+  ^Vendor\s+Part\s+Number\s+:\s+${VENDOR_PART_NUMBER}*$$
+  ^\*Vendor\s+Serial\s+Number\s+:\s+${VENDOR_SERIAL_NUMBER}*$$
+  ^\*Vendor\s+Version\s+:\s+${VENDOR_VERSION}*$$
+  ^Digital\s+diagnostic\s+function\s+:\s+${DIGITAL_DIAGNOSTIC_FUNC}*$$
+  ^Calibration\s+type\s+:\s+${CALIBRATION_TYPE}*$$
+  ^RSSI\s+:\s+${RSSI}*$$
+  ^Media\s+type\s+:\s+${MEDIA_TYPE}*$$
+  ^Transfer\s+Distance\(meter\)\s+:\s+${TRANSFER_DISTANCE}*$$
+  ^Connector\s+type\s+:\s+${CONNECTOR_TYPE}*$$
+  ^Wavelength\(nm\)\s+:\s+${WAVELENGTH}*$$
+  ^Min\s+data\s+rate\(Gb\/s\)\s+:\s+${MIN_DATA_RATE}*$$
+  ^Max\s+data\s+rate\(Gb\/s\)\s+:\s+${MAX_DATA_RATE}*$$
+  ^Wavelength\s+tolerance\(nm\)\s+:\s+${WAVELENGTH_TOLERANCE}*$$
+  ^\*Compatibility\s+type\s+:\s+${COMPATIBILITY_TYPE}*$$
+  ^\*Max\s+power\s+dissipation\s+:\s+${MAX_POWER_DISSIPATION}*$$
+  ^\*CDR\s+:\s+${CDR}*$$
+  ^TX\s+Ref\s+Clock\s+:\s+${TX_REF_CLOCK}*$$
+  ^Wavelength\s+control\s+:\s+${WAVELENGTH_CONTROL}*$$
+  ^Cooled\s+laser\s+:\s+${COOLED_LASER}*$$
+  ^Tunable\s+laser\s+:\s+${TUNABLE_LASER}*$$
+  ^Detector\s+type\s+:\s+${DETECTOR_TYPE}*$$
+  ^\*line\s+loopback\s+:\s+${LINE_LOOPBACK}*$$
+  ^\*XFI\s+loopback\s+:\s+${XFI_LOOPBACK}*$$
+  ^VPS\s+:\s+${VPS}*$$
+  ^Tx_Dis\s+control\s+:\s+${TX_DIS_CONTROL}*$$
+  ^Standby\s+control\s+:\s+${STANDBY_CONTROL}*$$
+  ^VPS\s+inner\s+low\s+power\s+:\s+${VPS_INNER_LOW_POWER}*$$
+  ^VPS\s+outer\s+low\s+power\s+:\s+${VPS_OUTER_LOW_POWER}*$$
+  ^FEC\s+:\s+${FEC}*$$
+  ^CMU\s+:\s+${CMU}*$$
+  ^. -> Error
