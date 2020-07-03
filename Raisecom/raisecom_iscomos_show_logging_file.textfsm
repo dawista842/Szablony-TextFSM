@@ -1,0 +1,20 @@
+Value Required,Filldown MAX_LOGGING_FILE_SIZE (\d+)
+Value Required,Filldown FILE_LOGGING_STATUS (\w+)
+Value Required,Filldown LEVEL (\w+\(\d\))
+Value Required,Filldown MESSAGES_LOGGED (\d+)
+Value Required,Filldown MESSAGES_DROPPED (\d+)
+Value Required,Filldown DISCRIMINATOR (\d+)
+Value Required DATE (\d+\-\d+\-\d+)
+Value Required TIME (\d+:\d+:\d+)
+Value Required MESSAGE (.+)
+
+Start
+  ^Max\s+logging\s+file\s+size\s+${MAX_LOGGING_FILE_SIZE}\s+bytes*$$
+  ^File\s+logging\s+${FILE_LOGGING_STATUS}*$$
+  ^Level\s+${LEVEL}*$$
+  ^Messages\s+logged\s+${MESSAGES_LOGGED}*$$
+  ^Messages\s+dropped\s+${MESSAGES_DROPPED}*$$
+  ^Discriminator\s+${DISCRIMINATOR}*$$
+  ^Logging\s+information\s+in\s+log\s+file:*$$
+  ^${DATE},${TIME}*\s+${MESSAGE} -> Record
+  ^. -> Error
