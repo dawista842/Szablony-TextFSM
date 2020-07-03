@@ -1,0 +1,12 @@
+Value Required INTERFACE (\S+)
+Value Required TEMP (\d+)
+Value Required VOLTAGE (\S+)
+Value Required BIAS (\S+)
+Value Required RX_POWER (\S+)
+Value Required TX_POWER (\S+)
+
+Start
+  ^Interface\s+Temp\(C\)\s+Voltage\(V\)\s+Bias\(mA\)\s+RX\s+Power\(dBM\)\s+TX\s+Power\(dBM\)*$$
+  ^---------\s+--------\s+----------\s+--------\s+-------------\s+-------------*$$
+  ^${INTERFACE}\s+${TEMP}\s+${VOLTAGE}\s+${BIAS}\s+${RX_POWER}\s+${TX_POWER}*$$ -> Record
+  ^. -> Error

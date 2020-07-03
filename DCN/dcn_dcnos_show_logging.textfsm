@@ -1,0 +1,11 @@
+Value Required,Filldown TOTAL_MESSAGES (\d+)
+Value Required MESSAGE_NUMBER (\d+)
+Value Required DATE (\S+\s\d+\s(\d+:\d+:\d+)\s\d+)
+Value Required LEVEL (\w+)
+Value Required MESSAGE (.+)
+
+Start
+  ^Current\s+messages\s+in\s+SDRAM:${TOTAL_MESSAGES}*$$
+  ^(\d+)\s+%(\S+\s\d+\s(\d+:\d+:\d+)\s\d+)\s+\<(\w+)\>\s+(.+)*$$ -> Continue.Record
+  ^${MESSAGE_NUMBER}\s+%${DATE}\s+\<${LEVEL}\>\s+${MESSAGE}*$$
+  ^. -> Error
