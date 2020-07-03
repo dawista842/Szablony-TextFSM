@@ -1,0 +1,57 @@
+Value Required INTERFACE (\S+)
+Value Required INTERFACE_STATUS ((\w+)|(\w+\s\w+))
+Value Required LINE_PROTOCOL_STATUS ((\w+)|(\w+\s\w+))
+Value Required INTERFACE_DESCRIPTION (.+)
+Value Required INTERFACE_TYPE (\S+)
+Value Required MAC_ADDRESS ([a-fA-F0-9]{2}\-[a-fA-F0-9]{2}\-[a-fA-F0-9]{2}\-[a-fA-F0-9]{2}\-[a-fA-F0-9]{2}\-[a-fA-F0-9]{2})
+Value Required PVID (\d+)
+Value Required MTU (\d+)
+Value Required BANDWIDTH (\d+\s\w+)
+Value Required LAST_CHANGE (\S+)
+Value Required LAST_CHANGE_SECONDS (\d+)
+Value Required ENCAPSULATION (\w+)
+# Value Required DUPLEX (\S+)
+# Value Required DUPLEX_ESTABLISH_METHOD (\w+)
+# Value Required SPEED (\S+)
+# Value Required SPEED_ESTABLISH_METHOD (\w+)
+Value Required FLOW_CONTROL (\w+)
+Value Required INPUT_PACKETS (\d+)
+Value Required INPUT_BYTES (\d+)
+# Value Required INPUT_UNICAST_PACKETS (\d+)
+# Value Required INPUT_MULTICAST_PACKETS (\d+)
+# Value Required INPUT_BROADCAST_PACKETS (\d+)
+Value Required INPUT_ERRORS (\d+)
+Value Required OUTPUT_PACKETS (\d+)
+Value Required OUTPUT_BYTES (\d+)
+# Value Required OUTPUT_UNICAST_PACKETS (\d+)
+# Value Required OUTPUT_MULTICAST_PACKETS (\d+)
+# Value Required OUTPUT_BROADCAST_PACKETS (\d+)
+Value Required OUTPUT_ERRORS (\d+)
+
+Start
+  ^Interface\s+brief:*$$
+  ^\s+(\S+)\s+is\s+((\w+)|(\w+\s\w+)),\s+line\s+protocol\s+is\s+((\w+)|(\w+\s\w+))*$$ -> Continue.Record
+  ^\s+${INTERFACE}\s+is\s+${INTERFACE_STATUS},\s+line\s+protocol\s+is\s+${LINE_PROTOCOL_STATUS}*$$
+  ^\s+(\S+)\s+is\s+layer\s+(\d+)\s+port,\s+alias\s+name\s+is\s+${INTERFACE_DESCRIPTION},\s+index\s+is\s+(\d+)*$$
+  ^\s+Hardware\s+is\s+${INTERFACE_TYPE},\s+address\s+is\s+${MAC_ADDRESS}*$$
+  ^\s+PVID\s+is\s+${PVID}*$$
+  ^\s+MTU\s+${MTU}\s+bytes,\s+BW\s+${BANDWIDTH}*$$
+  ^\s+Time\s+since\s+last\s+status\s+change:${LAST_CHANGE}\s+\(${LAST_CHANGE_SECONDS}\s+seconds\)*$$
+  ^\s+Encapsulation\s+${ENCAPSULATION},\s+Loopback\s+(.+)*$$
+  # ^\s+Auto-duplex:\s+Negotiation\s+${DUPLEX},\s+Auto-speed:\s+(\S*\s*)${SPEED}\s+bits*$$
+  ^\s+FlowControl\s+is\s+${FLOW_CONTROL},\s+MDI\s+type\s+is\s+(\S+)*$$
+  ^Statistics:*$$
+  ^\s+5\s+minute\s+input\s+rate\s+(\d+)\s+bits\/sec,\s+(\d+)\s+packets\/sec*$$
+  ^\s+5\s+minute\s+output\s+rate\s+(\d+)\s+bits\/sec,\s+(\d+)\s+packets\/sec*$$
+  ^\s+The\s+last\s+5\s+second\s+input\s+rate\s+(\d+)\s+bits\/sec,\s+(\d+)\s+packets\/sec*$$
+  ^\s+The\s+last\s+5\s+second\s+output\s+rate\s+(\d+)\s+bits\/sec,\s+(\d+)\s+packets\/sec*$$
+  ^\s+Input\s+packets\s+statistics:*$$
+  ^\s+${INPUT_PACKETS}\s+input\s+packets,\s+${INPUT_BYTES}\s+bytes,\s+(\d+)\s+no\s+buffer*$$
+  # ^\s+${INPUT_UNICAST_PACKETS}\s+unicast\s+packets,\s+${INPUT_MULTICAST_PACKETS}\s+multicast\s+packets,\s+${INPUT_BROADCAST_PACKETS}\s+broadcast\s+packets*$$
+  ^\s+${INPUT_ERRORS}\s+input\s+errors,\s+(\d+)\s+CRC,\s+(\d+)\s+frame\s+alignment,\s+(\d+)\s+overrun,\s+(\d+)\s+ignored,*$$
+  ^\s+(\d+)\s+abort,\s+(\d+)\s+length\s+error,\s+(\d+)\s+undersize\s+(\d+)\s+jabber,\s+(\d+)\s+fragments,\s+(\d+)\s+pause\s+frame*$$
+  ^\s+Output\s+packets\s+statistics:*$$
+  ^\s+${OUTPUT_PACKETS}\s+output\s+packets,\s+${OUTPUT_BYTES}\s+bytes,\s+(\d+)\s+underruns*$$
+  # ^\s+${OUTPUT_UNICAST_PACKETS}\s+unicast\s+packets,\s+${OUTPUT_MULTICAST_PACKETS}\s+multicast\s+packets,\s+${OUTPUT_BROADCAST_PACKETS}\s+broadcast\s+packets*$$
+  ^\s+${OUTPUT_ERRORS}\s+output\s+errors,\s+(\d+)\s+collisions,\s+(\d+)\s+late\s+collisions,\s+(\d+)\s+pause\s+frame*$$
+  # ^. -> Error
